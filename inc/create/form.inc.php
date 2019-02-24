@@ -1,5 +1,5 @@
 <?php // Filename: form.inc.php ?>
-
+<!-- #creates the form to create a new db record. create/content.inc does all of the magic! -->
 <!-- Note the use of sticky fields below -->
 <!-- Note the use of the PHP Ternary operator
 Scroll down the page

@@ -1,6 +1,6 @@
 <?php // Filename: config.inc.php
-    
-// copyright
+  // defines variables for configuration information and db table name.
+  // copyright
 $app_copyright = '&copy; 2019 - Your Name';
 // version
 $app_version = 0.1;

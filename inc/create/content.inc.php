@@ -1,11 +1,13 @@
 <?php // Filename: connect.inc.php
-
+#requires a connection to the db
+#requires function.inc. 
+#requires config.inc
 require __DIR__ . "/../db/mysqli_connect.inc.php";
 require __DIR__ . "/../functions/functions.inc.php";
 require __DIR__ . "/../app/config.inc.php";
-
+#display_error_bucket($error_bucket) in functions.inc
 $error_bucket = [];
-
+#creates a new db record. 
 // http://php.net/manual/en/mysqli.real-escape-string.php
 
 if($_SERVER['REQUEST_METHOD']=="POST"){

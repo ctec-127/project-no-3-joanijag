@@ -1,5 +1,5 @@
 <?php // Filename: mysqli_connect.inc.php
-
+//creates a connection to the db
 # Create a new connection to the database
 $host = 'localhost';
 $username = 'root';

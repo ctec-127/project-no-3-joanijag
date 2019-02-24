@@ -1,7 +1,9 @@
 <?php // Filename: delete-record.php
-
+#requires the connection to the database and "student_v2" db table
 require __DIR__ . "/inc/db/mysqli_connect.inc.php";
 require __DIR__ . "/inc/app/config.inc.php";
+
+#Logic to delete records as the comments discribe.
 
 // check to see if id is in the query string
 if(isset($_GET['id'])){

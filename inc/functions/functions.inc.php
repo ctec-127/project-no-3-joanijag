@@ -1,5 +1,5 @@
 <?php // Filename: function.inc.php
-
+#function to display a message using $_GET
 function display_message(){
     if (isset($_GET['message'])) {
         $message = $_GET['message'];
@@ -9,7 +9,7 @@ function display_message(){
     }
 }
 
-
+#filters the letters on the display-records page when the user clicks a letter A - Z.
 function display_letter_filters($filter){  
     echo '<span class="mr-3">Filter by <strong>Last Name</strong></span>';
  
@@ -26,7 +26,7 @@ function display_letter_filters($filter){
     echo '<a class="text-secondary p-2 mr-2 bg-success text-light border rounded" href="?clearfilter" title="Reset Filter">Reset</a>&nbsp;&nbsp;';
 }
 
-
+#shows the result of a search in the search-records page and content.inc.
 function display_record_table($result){
     echo '<div class="table-responsive">';
     echo "<table class=\"table table-striped table-hover table-sm mt-4\">";
@@ -48,7 +48,7 @@ function display_record_table($result){
     echo '</div>';
 }
 
-
+#catches errors in content.inc for the create-record page.
 function display_error_bucket($error_bucket){
     echo '<p>The following errors were deteced:</p>';
     echo '<div class="pt-4 alert alert-warning" role="alert">';
