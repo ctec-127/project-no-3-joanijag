@@ -12,6 +12,8 @@ if (isset($_POST['degree'])) {
 }else {
     $degree = "";
 }
+
+#I think I can added my code for making the checkboxes sticky here instead of in "content.inc" I will try it out when I work on the final project. 
 ?>
 
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
@@ -21,8 +23,8 @@ if (isset($_POST['degree'])) {
     <label class="col-form-label" for="last">Last Name </label>
     <input class="form-control" type="text" id="last" name="last" value="<?php echo (isset($last) ? $last : ''); ?>">
     <br>
-    <label class="col-form-label" for="id">Student ID </label>
-    <input class="form-control" type="text" id="id" name="id" value="<?php echo (isset($id) ? $id : ''); ?>">
+    <label class="col-form-label" for="sid">Student ID </label>
+    <input class="form-control" type="text" id="sid" name="sid" value="<?php echo (isset($sid) ? $sid : ''); ?>">
     <br>
     <label class="col-form-label" for="email">Email </label>
     <input class="form-control" type="text" id="email" name="email" value="<?php echo (isset($email) ? $email : ''); ?>">

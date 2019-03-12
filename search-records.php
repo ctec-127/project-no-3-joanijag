@@ -2,10 +2,10 @@
 #title for the header
 $pageTitle = "Search Records";
 # requires connection to the db and "student_v2" db table display_record_table($result); and header.
-require 'inc/layout/header.inc.php';
-require 'inc/db/mysqli_connect.inc.php';
-require 'inc/functions/functions.inc.php';
-require 'inc/app/config.inc.php';
+require_once 'inc/layout/header.inc.php';
+require_once 'inc/db/mysqli_connect.inc.php';
+#"function.inc" moved to "header.inc"
+require_once 'inc/app/config.inc.php';
 ?>
 
 <div class="container">

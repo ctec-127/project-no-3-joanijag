@@ -1,12 +1,12 @@
 <?php // Filename: connect.inc.php
 #requires a connection to the db
-#requires function.inc. 
 require __DIR__ . "/../db/mysqli_connect.inc.php";
-require __DIR__ . "/../functions/functions.inc.php";
+#***"function.inc" was moved to "header.inc" in "layout"***
 
 $orderby = 'last_name';
 $filter = '';
 #uses the display_letter_filters($filter) function
+#$_GET looks at the url for "=(a-z) to determin the letter it will sort by.
 if (isset($_GET['filter'])) {
     $filter = $_GET['filter'];
 }

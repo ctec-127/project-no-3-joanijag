@@ -15,5 +15,7 @@
 <body>
 <!-- #required config.inc for $app_name, $app_version, $app_copyright located in the footer.
      #includes nav bar -->
-<?php require 'inc/app/config.inc.php';?> 
-<?php require 'inc/layout/navbar.inc.php';?> 
+     <!-- #added "functions.inc" to the header. -->
+    <?php require 'inc/functions/functions.inc.php'; ?>
+    <?php require 'inc/app/config.inc.php';?> 
+    <?php require 'inc/layout/navbar.inc.php';?>
