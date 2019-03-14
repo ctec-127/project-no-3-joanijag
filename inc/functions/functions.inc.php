@@ -39,9 +39,9 @@ function display_record_table($result){
     <th><a href="?sortby=last_name">Last Name</a></th>
     <th><a href="?sortby=email">Email</a></th>
     <th><a href="?sortby=phone">Phone</a></th>
-    <th><a href="?sortby=degree">Degree</a></th>
+    <th><a href="?sortby=degree_program">Degree</a></th>
     <th><a href="?sortby=gpa">GPA</a></th>
-    <th><a href="?sortby=aid">Financial Aid</a></th>
+    <th><a href="?sortby=financial_aid">Financial Aid</a></th>
     
     </tr></thead>';
     # $row will be an associative array containing one row of data at a time
