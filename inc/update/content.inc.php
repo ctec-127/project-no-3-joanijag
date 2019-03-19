@@ -11,13 +11,14 @@ $error_bucket = [];
 
 $yes = '';
 $no = '';
+$id = '';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     #new code for the hidden field that captures the primary key of the db row I am updating.
     // grab primary key from hidden field
     if (!empty($_POST['id'])) {
-      $id = $_POST['id'];
-  }
+        $id = $_POST['id'];
+    }
     // First insure that all required fields are filled in
     if (empty($_POST['first'])) {
         array_push($error_bucket, "<p>A first name is required.</p>");
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($_POST['gpa'])) {
         array_push($error_bucket, "<p>Student GPA is required.</p>");
     } else {
-    # thakes the user input and stores it in a format that is safe for an SQL statement in $gpa.   
+        # thakes the user input and stores it in a format that is safe for an SQL statement in $gpa.
         $gpa = $db->real_escape_string($_POST['gpa']);
     }
     if (!isset($_POST['aid'])) {
@@ -68,22 +69,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $no = 'checked'; # set $no to checked
     $aid = 0;
     }
-    #I checked to see if it was set. Then I realized it's always set so I commented it out. 
+    #I checked to see if it was set. Then I realized it's always set so I commented it out.
     // if (!isset($_POST['degree'])) {
     //     array_push($error_bucket, "<p>A degree program is required.</p>");
     // }
     #I checked to see if it was set to 'select', if yes it gets pushed to the errorbucket.
-    #If it is set to a degree it is set up for the db. 
-    if ($_POST['degree'] == 'select'){
+    #If it is set to a degree it is set up for the db.
+    if ($_POST['degree'] == 'select') {
         array_push($error_bucket, "<p>A degree program is required.</p>");
-    }else{
+    } else {
         $degree = $db->real_escape_string($_POST['degree']);
     }
     // If we have no errors than we can try and insert the data
     if (count($error_bucket) == 0) {
         // Time for some SQL
         $sql = "UPDATE $db_table SET first_name='$first', last_name='$last', student_id=$sid, email='$email',phone='$phone', gpa='$gpa', financial_aid='$aid',degree_program='$degree' WHERE id='$id'";
-       
+
         // comment in for debug of SQL
         // echo $sql;
 
@@ -96,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             echo '<div class="alert alert-success" role="alert">
             I saved that new record for you!
           </div>';
-          #my checkboxes and select are not unsetting when I submit a form. I want to fix this for the final project.
+            #my checkboxes and select are not unsetting when I submit a form. I want to fix this for the final project.
             unset($first);
             unset($last);
             unset($sid);
@@ -104,29 +105,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             unset($phone);
             unset($gpa);
             unset($aid);
-            unset($degree);#unsets the variables after successful form entry for the next entry.
-            unset($id); 
+            unset($degree); #unsets the variables after successful form entry for the next entry.
+            unset($id);
         }
     } else {
         display_error_bucket($error_bucket);
     }
-}else {
-  // check for record id (primary key)
-  $id = $_GET['id'];
-  // now we need to query the database and get the data for the record
-  // note limit 1
-  $sql = "SELECT * FROM $db_table WHERE id=$id LIMIT 1";
-  // query database
-  $result = $db->query($sql);
-  // get the one row of data
-  while($row = $result->fetch_assoc()) {
-      $first = $row['first_name'];
-      $last = $row['last_name'];
-      $sid = $row['student_id'];
-      $email = $row['email'];
-      $phone = $row['phone'];
-      $gpa = $row['gpa'];
-      $aid = $row['financial_aid'];
-      $degree = $row['degree_program'];
-  }
+} else {
+    // check for record id (primary key)
+    $id = $_GET['id'];
+    // now we need to query the database and get the data for the record
+    // note limit 1
+    $sql = "SELECT * FROM $db_table WHERE id=$id LIMIT 1";
+    // query database
+    $result = $db->query($sql);
+    // get the one row of data
+    while ($row = $result->fetch_assoc()) {
+        $first = $row['first_name'];
+        $last = $row['last_name'];
+        $sid = $row['student_id'];
+        $email = $row['email'];
+        $phone = $row['phone'];
+        $gpa = $row['gpa'];
+        $aid = $row['financial_aid'];
+        $degree = $row['degree_program'];
+    }
 }

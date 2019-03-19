@@ -25,6 +25,13 @@
         </div>
       </li>
     </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto pr-2">
+       <li id="advanced" class="nav-item<?=echoActiveClassIfRequestMatches("advanced-search");?>">
+        <a class="nav-link" href="advanced-search.php">Advanced Search <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    </div>
     <form action="search-records.php" method="POST" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search Last Name" name="search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

@@ -11,11 +11,12 @@ require_once 'inc/app/config.inc.php';
 <div class="container">
     <div class="row">
         <div class="col-lg-12 mt-4">
+        
         <?php 
         #(if)searches for db column names in the "student_v2" db and stores the result in $result.
         #(if)next if no result an image and a message is echoed out.
         #(else) display search result
-        #(else) if no input was made, displays image and message .
+        #(else) if no input was made, displays image and message.
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if(!empty($_POST['search'])){
                     $sql = "SELECT * FROM $db_table WHERE " . '"' . $_POST["search"] . '"' . " IN (student_id, first_name, last_name, email, phone) ORDER BY last_name ASC";

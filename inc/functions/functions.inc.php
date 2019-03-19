@@ -31,7 +31,9 @@ function display_letter_filters($filter)
 
 #shows the result of a search in the search-records page and content.inc.
 #I added table head names for GPA, Financial Aid and Degree
-function display_record_table($result){
+# I added graduation_date and reorderd the display.
+function display_record_table($result)
+{
     echo '<div class="table-responsive">';
     echo "<table class=\"table table-striped table-hover table-sm mt-3 table-bordered\">";
     echo '<thead class="thead-dark"><tr><th class="bg-primary">Actions</th><th><a href="?sortby=student_id">Student ID</a></th>
@@ -39,14 +41,16 @@ function display_record_table($result){
     <th><a href="?sortby=last_name">Last Name</a></th>
     <th><a href="?sortby=email">Email</a></th>
     <th><a href="?sortby=phone">Phone</a></th>
-    <th><a href="?sortby=degree_program">Degree</a></th>
     <th><a href="?sortby=gpa">GPA</a></th>
+    <th><a href="?sortby=degree_program">Degree</a></th>
+    <th><a href="?sortby=graduation_date">Graduation</a></th>
     <th><a href="?sortby=financial_aid">Financial Aid</a></th>
-    
     </tr></thead>';
+
     # $row will be an associative array containing one row of data at a time
     #I added table head names that are column names in the db for gpa, financial_aid and degree_program
-    while ($row = $result->fetch_assoc()){
+    # I added graduation_date and reorderd the display.
+    while ($row = $result->fetch_assoc()) {
         # display rows and columns of data
         echo '<tr>';
         echo "<td><a href=\"update-record.php?id={$row['id']}\">Update</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"delete-record.php?id={$row['id']}\" onclick=\"return confirm('Are you sure?');\">Delete</a></td>";
@@ -56,15 +60,15 @@ function display_record_table($result){
         echo "<td>{$row['email']}</td>";
         echo "<td>{$row['phone']}</td>";
         echo "<td>{$row['gpa']}</td>";
-        echo "<td>{$row['financial_aid']}</td>";
         echo "<td>{$row['degree_program']}</td>";
+        echo "<td>{$row['graduation_date']}</td>";
+        echo "<td>{$row['financial_aid']}</td>";
         echo '</tr>';
     } // end while
     // closing table tag and div
     echo '</table>';
     echo '</div>';
 }
-
 
 #catches errors in content.inc for the create-record page.
 function display_error_bucket($error_bucket)
@@ -79,11 +83,13 @@ function display_error_bucket($error_bucket)
     echo '</div>';
     echo '<p>All of these fields are required. Please fill them in.</p>';
 }
-#the magic sauce for making the letters responsive. 
+#the magic sauce for making the letters responsive.
 function echoActiveClassIfRequestMatches($requestUri)
 {
     $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
 
-    if ($current_file_name == $requestUri)
+    if ($current_file_name == $requestUri) {
         echo 'active';
+    }
+
 }

@@ -6,7 +6,10 @@ Scroll down the page
 http://php.net/manual/en/language.operators.comparison.php#language.operators.comparison.ternary
 -->
 <?php
-#I added this to make the select sticky 
+#I added this to make the select sticky
+// $yes = '';
+// $no = '';
+
 if (isset($_POST['degree'])) {
     $degree = $_POST['degree'];
 }else {
@@ -36,19 +39,24 @@ if (isset($_POST['degree'])) {
     <label class="col-form-label" for="gpa">GPA </label>
     <input class="form-control" type="text" id="gpa" name="gpa" value="<?php echo (isset($gpa) ? $gpa : ''); ?>">
     <br>
+    <label class="col-form-label" for="degree"> Program Degree </label>
+    <select class="form-control" name="degree" id='degree'>
+        <option class="form-control" value="select"<?php if($degree == "--Select--") echo ' selected="selected"';?>>--Select--</option>
+        <option class="form-control" value="AAT Web Developement"<?php if($degree == "AAT Web Developement") echo ' selected="selected"';?>>AAT Web Development</option>
+        <option class="form-control" value="AAS Marketing"<?=($degree == "AAS Marketing") ? ' selected': '';?>>AAS Marketing</option>
+        <option class="form-control" value="AAS Management"<?=($degree == "AAS Management") ? ' selected': '';?>>AAS Management</option>
+        <option class="form-control" value="AAT Computer Support"<?=($degree == "AAT Computer Support") ? ' selected': '';?>>AAT Computer Support</option>
+        <option class="form-control" value="AAT Networking Technology"<?=($degree == "AAT Networking Technology") ? ' selected': '';?>>AAT Networking Technology</option>
+    </select>
+    <br>
+    <label class="col-form-label" for="graduation">Graduation Date </label>
+    <input class="form-control" type="date" id="graduation" name="graduation" value="<?php echo (isset($graduation) ? $graduation : ''); ?>">
+    <br>
     <label class="col-form-label" for="yes">Financial Aid </label>
-    <input class="" type="radio" id="yes" name="aid" value="yes"<?=$yes;?>> Yes
+    <br>
+    <input class="" type="radio" id="yes" name="aid" value="yes"<?=$yes;?>> Yes &nbsp;&nbsp;&nbsp;
     <input class="" type="radio" id="no" name="aid" value="no"<?=$no;?>> No
     <br>
-    <label class="col-form-label" for="degree1"> Program Degree </label>
-    <select name="degree" id='degree1'>
-        <option value="select"<?php if($degree == "--Select--") echo ' selected="selected"';?>>--Select--</option>
-        <option value="AAT Web Developement"<?php if($degree == "AAT Web Developement") echo ' selected="selected"';?>>AAT Web Development</option>
-        <option value="AAS Marketing"<?=($degree == "AAS Marketing") ? ' selected': '';?>>AAS Marketing</option>
-        <option value="AAS Management"<?=($degree == "AAS Management") ? ' selected': '';?>>AAS Management</option>
-        <option value="AAT Computer Support"<?=($degree == "AAT Computer Support") ? ' selected': '';?>>AAT Computer Support</option>
-        <option value="AAT Networking Technology"<?=($degree == "AAT Networking Technology") ? ' selected': '';?>>AAT Networking Technology</option>
-    </select>
     <br>
     <a href="display-records.php">Cancel</a>&nbsp;&nbsp;
     <button class="btn btn-primary" type="submit">Save Record</button>

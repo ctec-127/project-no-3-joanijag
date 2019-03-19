@@ -8,9 +8,9 @@ require __DIR__ . "/../app/config.inc.php";
 $error_bucket = [];
 #creates a new db record.
 // http://php.net/manual/en/mysqli.real-escape-string.php
-
 $yes = '';
 $no = '';
+
 #(strip_tags) removes any html tags that the user might put into a text input field.
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
@@ -63,6 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $no = 'checked'; # set $no to checked
     $aid = 0;
     }
+    if (!isset($_POST['graduation'])) {
+        array_push($error_bucket, "<p>Student GPA is required.</p>");
+    }else{
+        $graduation = $db->real_escape_string(strip_tags($_POST['graduation']));
+    }
     #I checked to see if it was set. Then I realized it's always set so I commented it out. 
     // if (!isset($_POST['degree'])) {
     //     array_push($error_bucket, "<p>A degree program is required.</p>");
@@ -79,8 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (count($error_bucket) == 0) {
         // Time for some SQL
 
-        $sql = "INSERT INTO $db_table (first_name,last_name,student_id,email,phone,gpa,financial_aid, degree_program) ";
-        $sql .= "VALUES ('$first','$last',$sid,'$email','$phone','$gpa','$aid','$degree')";
+        $sql = "INSERT INTO $db_table (first_name,last_name,student_id,email,phone,gpa,financial_aid,degree_program,graduation_date) ";
+        $sql .= "VALUES ('$first','$last',$sid,'$email','$phone','$gpa','$aid','$degree','$graduation')";
 
         // comment in for debug of SQL
         // echo $sql;
@@ -101,7 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             unset($phone);
             unset($gpa);
             unset($aid);
-            unset($degree); #unsets the variables after successful form entry for the next entry.
+            unset($degree);
+            unset($graduation); #unsets the variables after successful form entry for the next entry.
         }
     } else {
         display_error_bucket($error_bucket);
