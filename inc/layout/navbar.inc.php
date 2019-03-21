@@ -1,11 +1,11 @@
 <?php // Filename: navbar.inc.php ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="display-records.php">CTEC 127</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" class="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
        <li class="nav-item<?=echoActiveClassIfRequestMatches("display-records");?>"><!--new function added here -->
         <a class="nav-link" href="display-records.php">Home <span class="sr-only">(current)</span></a>
@@ -25,7 +25,8 @@
         </div>
       </li>
     </ul>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- I get an error in validation for using the duplicate class="navbarSupportedContent". I don't understand why a class cannot be duplicated. -->
+    <div class="collapse navbar-collapse" class="navbarSupportedContent">
     <ul class="navbar-nav ml-auto pr-2">
        <li id="advanced" class="nav-item<?=echoActiveClassIfRequestMatches("advanced-search");?>">
         <a class="nav-link" href="advanced-search.php">Advanced Search <span class="sr-only">(current)</span></a>

@@ -28,57 +28,61 @@ if (isset($_POST['degree'])) {
 }
 ?>
 
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="mb-3">
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="mb-3">
 
-                <label class="col-form-label" for="first">First Name </label>
-                <input class="form-control" type="text" id="first" name="first" value="<?php echo (isset($first) ? $first : ''); ?>">
-                <br>
-                <label class="col-form-label" for="last">Last Name </label>
-                <input class="form-control" type="text" id="last" name="last" value="<?php echo (isset($last) ? $last : ''); ?>">
-                <br>
-                <label class="col-form-label" for="sid">Student ID </label>
-                <input class="form-control" type="text" id="sid" name="sid" value="<?php echo (isset($sid) ? $sid : ''); ?>">
-                <br>
-                <label class="col-form-label" for="email">Email </label>
-                <input class="form-control" type="text" id="email" name="email" value="<?php echo (isset($email) ? $email : ''); ?>">
-                <br>
-                <label class="col-form-label" for="phone">Phone </label>
-                <input class="form-control" type="text" id="phone" name="phone" value="<?php echo (isset($phone) ? $phone : ''); ?>">
-                <br>
-                <label class="col-form-label" for="gpa">GPA </label>
-                <input class="form-control" type="text" id="gpa" name="gpa" value="<?php echo (isset($gpa) ? $gpa : ''); ?>">
-                <br>
-                <label class="col-form-label" for="degree"> Program Degree </label>
-                <br>
-                <select class="form-control" name="degree" id='degree'>
-                <?php
+    <label class="col-form-label" for="first">First Name </label>
+    <input class="form-control" type="text" id="first" name="first" value="<?php echo (isset($first) ? $first : ''); ?>">
+    <br>
+    <label class="col-form-label" for="last">Last Name </label>
+    <input class="form-control" type="text" id="last" name="last" value="<?php echo (isset($last) ? $last : ''); ?>">
+    <br>
+    <label class="col-form-label" for="sid">Student ID </label>
+    <input class="form-control" type="text" id="sid" name="sid" value="<?php echo (isset($sid) ? $sid : ''); ?>">
+    <br>
+    <label class="col-form-label" for="email">Email </label>
+    <input class="form-control" type="text" id="email" name="email" value="<?php echo (isset($email) ? $email : ''); ?>">
+    <br>
+    <label class="col-form-label" for="phone">Phone </label>
+    <input class="form-control" type="text" id="phone" name="phone" value="<?php echo (isset($phone) ? $phone : ''); ?>">
+    <br>
+    <label class="col-form-label" for="gpa">GPA </label>
+    <input class="form-control" type="text" id="gpa" name="gpa" value="<?php echo (isset($gpa) ? $gpa : ''); ?>">
+    <br>
+    <label class="col-form-label" for="degree"> Program Degree </label>
+    <br>
+    <select class="form-control" name="degree" id='degree'>
+<?php
+#this populates the select dropdown.
+#fetch_assoc() looks in the db for the db degree_program column.
 while ($row = $result->fetch_assoc()) {
     // sticky select check
     if ($row['degree_program'] == $degree) {
         $selected = ' selected';
     }
+    #this echos out the select dropdown populated with with the degree_program info.
     echo "<option value=\"" . $row['degree_program'] . "\" $selected>" . $row['degree_program'] . "</option>\n";
 
     $selected = '';
 }
 ?>
-                </select>
-                <br>
-                <label class="col-form-label" for="graduation">Graduation Date </label>
-                <input class="form-control" type="date" id="graduation" name="graduation" value="<?php echo (isset($graduation) ? $graduation : ''); ?>">
-                <br>
-                <label label class="col-form-label" for="yes">Financial Aid
-                <br>
-                <input class="" type="radio" id="yes" name="aid" value="yes"<?=$yes;?>> Yes
-                </label>
-                <label for="no">
-                <input class="" type="radio" id="no" name="aid" value="no"<?=$no;?>> No
-                </label>
-                    <br>
-                    <br>
-                    <button class="btn btn-primary" type="submit">Search Records</button>
-                </form>
-                <?php
+    </select>
+        <br>
+        <label class="col-form-label" for="graduation">Graduation Date </label>
+            <input class="form-control" type="date" id="graduation" name="graduation" value="<?php echo (isset($graduation) ? $graduation : ''); ?>">
+            <br>
+            #
+            <label class="col-form-label" for="yes">Financial Aid
+        <br>
+            <input class="" type="radio" id="yes" name="aid" value="yes"<?=$yes;?>> Yes
+            </label>
+            <label for="no">
+            <input class="" type="radio" id="no" name="aid" value="no"<?=$no;?>> No
+        </label>
+        <br>
+        <br>
+    <button class="btn btn-primary" type="submit">Search Records</button>
+    </form>
+<?php
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($_POST['first'])) {
@@ -140,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $result = $db->query($sql);
 
+    #this if statement won't work because I am using WHERE 1=1
     if ($result->num_rows > 0) {
         echo "<h3 class='alert alert-success mb-4'>$result->num_rows results were found</h3>";
     }
@@ -150,6 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 # close the database
 $db->close();
 ?>
-
+        </div>
+    </div>
+</div>
 <!-- #footer -->
 <?php require 'inc/layout/footer.inc.php';?>
